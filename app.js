@@ -7,6 +7,7 @@ var express = require('express')
   , path = require('path')
   , session = require('express-session')
   , RedisStore = require('connect-redis')(session)
+  , compression = require('compression')
 
   //Add Page Here ruotes
   , routes = require('./controllers/routes/index')
@@ -24,6 +25,7 @@ var app = express();
 app.set('port', process.env.PORT || 3232);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(compression());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.methodOverride());
